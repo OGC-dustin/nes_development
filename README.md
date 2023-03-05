@@ -1,9 +1,9 @@
 # nes_development
-Development for the 6502 microprocessor variant in an NES on Windows 10
+Development for the 6502 microprocessor variant ( 65c02 ) in an NES on Windows 10
 - https://www.nesdev.org/ includes references and NES Cart Database
 - http://www.6502.org/tutorials/6502opcodes.html
 - https://en.wikibooks.org/wiki/NES_Programming
-- https://en.wikibooks.org/wiki/6502_Assembly
+- https://en.wikibooks.org/wiki/6502_Assembly -> https://en.wikibooks.org/wiki/65c02_Assembly
 - https://en.wikibooks.org/wiki/NES_Programming/Introduction
 - https://en.wikibooks.org/wiki/NES_Programming/Initializing_the_NES
 
@@ -97,11 +97,11 @@ Registers ( 6 )
 - SP - Stack Pointer - tracks stack position
 - SR - Processor Flags/Status - holds results of previous instructions
     - N - negative flag
-    - V - 
-    - 
-    - 
-    - D - 
-    - I - 
+    - V - Overflow
+    - Unused
+    - B - Break
+    - D - Decimal ( I don't think this is supported on NES )
+    - I - Interrupt Disable
     - Z - zero bit
     - C - carry bit
 
