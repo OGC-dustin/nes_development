@@ -53,8 +53,20 @@ Graphic Development
 ---
 ## 6502 Assembly ( 8 bit processor )
 ---
+Number Representation
+- \# is a predicate meaning Constant or Immediate Value that can be added to any of the following 3 type i.e. #$101, #%101, and #101
+- $101 = Hex 0x101 = 257
+- %101 = Binary 0b101 = 5
+- 101 = Decimal 101 = 101
+
+Addressing Modes
+- Immediate Addressing - with the use of the immediate symbol \#, only work with single bytes
+- ZeroPage Addressing - 8 bit address operand, actions on ram 0x000 to 0x00FF are typically faster 
+- Absolute Addressing - use a full 16 bit address with your operand
+- Implicit Addressing - no operands used with instruction
+
 Registers ( 6 )
-- A - 
+- A - Accumulator for mathematics and bitwise manipulation
 - X - Index Register ( Counter or Position ) [set immediate, copy memory, increment, decrement ]
 - Y - Index Register ( COunter or Postiion ) [set immediate, copy memory, increment, decrement ]
 - PC - program counter
@@ -62,9 +74,14 @@ Registers ( 6 )
 - SR - 
 
 System Memory ( 64 KB )
+- RAM 0x000 - 0x07FF
+- Mirror 1 - 0x0800 - 0x0FFF
+- Mirror 2 - 0x1000 - 0x17FF
+- Mirror 3 - 0x1800 - 0x1FFF
+- I/O - 0x2000 - 0x401F ( graphics, Sounds, COntrollers, PRG-ROM bank swapping )
+- Catridsge Space - 0x4020 ->
 
 50+ instructions ( what data does this instruction modify, how does it modify it )
-
 ---
 ## NES System Specifications and Development Notes
 ---
