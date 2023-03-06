@@ -65,6 +65,7 @@ CPU - Ricoh 2A03 CPU which is a MOS 6502 without a decimal mode.
 
 Video - Ricoh 2C02 PPU (Picture Processing Unit)
 - Resolution - 256 x 240 pixels (Only 256 x 224 pixels are visible on NTSC)
+    - each nametable can hold 32x30 blocks of 8x8 characters from pattern tables
 - Colors - Fixed 52 (44 colors, 5 grays and 3 duplicated)
 - Palette
     - Background: 4 Palettes x 3 Colors + 1 Back Color
