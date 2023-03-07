@@ -1,5 +1,0 @@
-{
-  "executable": "C:\\cc65\\bin\\cl65",
-  "input": "src\\ogc-nrtps-demo.s",
-  "params": "--verbose --target nes -o ogc-nrtps-demo.nes"
-}
