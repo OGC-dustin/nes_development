@@ -1,0 +1,3 @@
+[submodule "projects/ogc-nrtps-demo/ogc-lib-os-nrtps"]
+	path = projects/ogc-nrtps-demo/ogc-lib-os-nrtps
+	url = git@github.com:OGC-dustin/ogc-lib-os-nrtps.git

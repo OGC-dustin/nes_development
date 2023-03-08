@@ -19,3 +19,16 @@ Requirements:
 - NRTPS task handle needs a monotonic clock and the ability to handle clock rollover
 	- ?? interrupt advances clock each time the screen vsync is generated
 	- ?? animation timers are stored in ram, how does this work
+
+---
+referencing https://github.com/jmk/cc65-nes-examples ( written in C )
+
+Makefile is added as a WIP
+
+Current compilation steps to get a working control input with music and sound effects:
+```
+c:/cc65/bin/cc65.exe -Oi ogc-nrtps-demo.c --target nes -Ic:/cc65/include/ --add-source
+c:/cc65/bin/ca65.exe ogc-nrtps-demo.s
+c:/cc65/bin/ld65.exe -C .\nrom_128_horz.cfg crt0.o ogc-nrtps-demo.o -o ogc-nrtps-demo.nes nes.lib
+```
+---
