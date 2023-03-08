@@ -29,6 +29,7 @@ Current compilation steps to get a working control input with music and sound ef
 ```
 c:/cc65/bin/cc65.exe -Oi ogc-nrtps-demo.c --target nes -Ic:/cc65/include/ --add-source
 c:/cc65/bin/ca65.exe ogc-nrtps-demo.s
-c:/cc65/bin/ld65.exe -C .\nrom_128_horz.cfg crt0.o ogc-nrtps-demo.o -o ogc-nrtps-demo.nes nes.lib
+c:/cc65/bin/ca65.exe crt0.s
+c:/cc65/bin/ld65.exe -C nrom_128_horz.cfg crt0.o ogc-nrtps-demo.o -o ogc-nrtps-demo.nes nes.lib
 ```
 ---
