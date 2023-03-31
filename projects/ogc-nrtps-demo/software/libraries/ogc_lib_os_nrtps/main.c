@@ -1,11 +1,12 @@
 /*
  * OGC Engineering
- * Non Real-Timed Polled Scheduler ( NRTPS )
- * generic main function
+ *   Library
+ *     Operating System
+ *       Non Real-Timed Polled Scheduler ( NRTPS )
  */
 
 #include "app.h"
-#include "lib-os-nrtps.h"
+#include "ogc_lib_os_nrtps.h"
 #include "hal.h"
 
 int main( void )
@@ -14,7 +15,7 @@ int main( void )
     hal_config();
 
      /* initialize the scheduler in preparation for tasks to be scheduled */
-    lib_os_nrtps_init();
+    ogc_lib_os_nrtps_init();
 
 #ifdef DEPLOYMENT_OPTION_RUN_UNIT_TESTS
     /* run the OS test BEFORE continuing with other operations */
@@ -24,7 +25,7 @@ int main( void )
     {
         while ( 1U ); /* hold here because the core scheduler failed */
     }
-    lib_os_nrtps_init(); /* reinit after test completes */
+    ogc_lib_os_nrtps_init(); /* reinit after test completes */
 #endif
 
      /* schedule any hal level tasks that need the scheduler */
@@ -34,10 +35,10 @@ int main( void )
     app_init();
 
      /* loop logic of the scheduler that should never end */
-    lib_os_nrtps_start();
+    ogc_lib_os_nrtps_start();
 
      /* just in case the loop logic returns, do a final catch, last will, or other clean up */
-    lib_os_nrtps_end();
+    ogc_lib_os_nrtps_end();
 
     return ( 0U );
 }

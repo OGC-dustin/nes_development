@@ -5,9 +5,21 @@
 Show basic screens, controls, audio and computation via separate tasks
 
 Flow chart:
-1. Title Screen:
+1. Assembly interrupt collection defines the three interrupts of the NES and support drivers provide the rest of needed functionality
+- firmware/nes/drivers.s provides other related drivers specific to the NES
+- firmware/nes/crt0.s initializes everything, sets up interrupts and stack before passing control to 'C' main function
+- firmware/nes/nmi.s defines the non maskable interrupt handler
+- firmware/nes/irq.s defines the maskable interrupt handler
+2. The OGC NRTPS provides the 'C' main function that finishes intialization and starts a game application
+- software/libraries/ogc-lib-os-nrtps provides task scheduler functionality
+3. The game application 
+
+
+
+
+Title Screen:
 	- "NRTPS DEMO" with build __DATE__ and __TIME__
-2. Menu Screen:
+Menu Screen:
 	- button capture and associated processing ( with sound effects ):
 		- Start: resets screen removing all objects and resetting spawn point
 		- Select: starts or stops background music ( other buttons have sound effects added )

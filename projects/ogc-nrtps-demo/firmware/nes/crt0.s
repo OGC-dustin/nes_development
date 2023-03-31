@@ -1,3 +1,22 @@
+; startup code for cc65 and neslib
+; based on code by Groepaz/Hitmen <groepaz@gmx.net>, Ullrich von Bassewitz <uz@cc65.org>
+
+;v050517
+
+    .export _exit,__STARTUP__:absolute=1
+	.import initlib,push0,popa,popax,_main,zerobss,copydata
+
+; Linker generated symbols
+	.import __RAM_START__   ,__RAM_SIZE__
+	.import __ROM0_START__  ,__ROM0_SIZE__
+	.import __STARTUP_LOAD__,__STARTUP_RUN__,__STARTUP_SIZE__
+	.import	__CODE_LOAD__   ,__CODE_RUN__   ,__CODE_SIZE__
+	.import	__RODATA_LOAD__ ,__RODATA_RUN__ ,__RODATA_SIZE__
+	.import __DMC_START__
+	.import NES_MAPPER,NES_PRG_BANKS,NES_CHR_BANKS,NES_MIRRORING
+    .include "zeropage.inc"
+
+
 .segment "ZEROPAGE"
 
 NTSC_MODE: 			.res 1
@@ -115,9 +134,9 @@ clearRAM:
     bne @1
 
 	lda #4
-	jsr _pal_bright
-	jsr _pal_clear
-	jsr _oam_clear
+	;jsr _pal_bright
+	;jsr _pal_clear
+	;jsr _oam_clear
 
     jsr	zerobss
 	jsr	copydata
@@ -154,18 +173,7 @@ detectNTSC:
 	and #$80
 	sta <NTSC_MODE
 
-	jsr _ppu_off
-
-	ldx #<music_data
-	ldy #>music_data
-	lda <NTSC_MODE
-	jsr FamiToneInit
-
-.if(FT_SFX_ENABLE)
-	ldx #<sounds_data
-	ldy #>sounds_data
-	jsr FamiToneSfxInit
-.endif
+	;jsr _ppu_off
 
 	lda #$fd
 	sta <RAND_SEED
@@ -178,29 +186,12 @@ detectNTSC:
 
 	jmp _main			;no parameters
 
-.segment "RODATA"
-
-music_data:
-	.include "music.s"
-
-.if(FT_SFX_ENABLE)
-sounds_data:
-	.include "sounds.s"
-.endif
-
-.segment "SAMPLES"
-
-.if(FT_DPCM_ENABLE)
-	.incbin "music.dmc"
-.endif
+.include "irq.s"
+.include "nmi.s"
+.include "map.s"
 
 .segment "VECTORS"
 
     .word nmi	;$fffa vblank nmi
     .word start	;$fffc reset
    	.word irq	;$fffe irq / brk
-
-
-.segment "CHARS"
-
-	.incbin "tileset.chr"
